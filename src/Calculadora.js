@@ -4,7 +4,7 @@ function Calculadora() {
   const [num1, setNum1] = useState("");
   const [num2, setNum2] =useState("")
   const [formula, setFormula] =useState("")
-  const [result, setResult]= useState(0)
+  const [result, setResult]= useState(Number)
 
 
   const Numeros = (num)=>{
@@ -18,13 +18,29 @@ function Calculadora() {
   const tipoOperacion = (ope) =>{
     setFormula(ope)
   }
-  const resultado =()=>{
-    switch(tipoOperacion){
-      case  "-":
-        setResult(Number(num1) + Number(num2))
+  const Resultado =()=>{
+    const numero1 = Number(num1)
+    const numero2 = Number(num2)
+    switch(formula){
+      case  '-':
+
+      return setResult(numero1 - numero2)
+      break; 
+      case  '+':
+
+      return setResult(numero1 + numero2)
+      break; 
+
+      case  '*':
+
+       return setResult(numero1 * numero2)
+        break; 
+        case  '/':
+
+       return setResult(numero1 / numero2)
         break; 
     }
-     console.log(num1,num2,result);
+     console.log(num1,num2,result,formula);
   }
   return <div className='principal'>
       <div id="display">
@@ -45,10 +61,10 @@ function Calculadora() {
       <button onClick={()=>{Numeros(8)}} id="eight">8</button>
       <button onClick={()=>{Numeros(9)}} id="nine">9</button>
       <button onClick={()=>{Numeros(0)}} id="zero">0</button>
-      <button onClick={()=>{tipoOperacion("*")}} id="multiply">X</button>
+      <button onClick={()=>{tipoOperacion("*")}} id="multiply">*</button>
       <button onClick={()=>{tipoOperacion("-")}} id="subtract">-</button>
       <button onClick={()=>{tipoOperacion("+")}} id="add">+</button>
-      <button onClick={resultado} id='equals'>=</button>
+      <button onClick={Resultado} id='equals'>=</button>
       <button id="decimal">.</button>
       </div>
   </div>;
