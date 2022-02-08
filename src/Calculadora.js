@@ -15,9 +15,7 @@ function Calculadora() {
     }
     
   }
-  const tipoOperacion = (ope) =>{
-    setFormula(ope)
-  }
+  
   const Resultado =()=>{
     const numero1 = Number(num1)
     const numero2 = Number(num2)
@@ -39,8 +37,24 @@ function Calculadora() {
 
        return setResult(numero1 / numero2)
         break; 
+        
+        
     }
      console.log(num1,num2,result,formula);
+  }
+  const clear = ()=>{
+    setNum1("")
+    setNum2("")
+    setFormula("")
+    setResult(0)
+  }
+
+  const mistake = ()=>{
+    if(formula===""){
+      setNum1(num1.toString().slice(0,-1))
+    }else{
+      setNum2(num2.toString().slice(0,-1))
+    }
   }
   return <div className='principal'>
       <div id="display">
@@ -48,9 +62,9 @@ function Calculadora() {
           <div>{result? result : (!formula?num1:num2)}</div>
       </div>
       <div className='contenedorBtns'>
-      <button id="clear">C</button>
-      <button id="mistake">{"<--"}</button>
-      <button onClick={()=>{tipoOperacion("/")}} id="divide">/</button>
+      <button onClick={clear} id="clear">C</button>
+      <button onClick={mistake} id="mistake">{"<--"}</button>
+      <button onClick={()=>{setFormula("/")}} id="divide">/</button>
       <button onClick={()=>{Numeros(1)}} id="one">1</button>
       <button onClick={()=>{Numeros(2)}} id="two">2</button>
       <button onClick={()=>{Numeros(3)}} id="three">3</button>
@@ -61,9 +75,9 @@ function Calculadora() {
       <button onClick={()=>{Numeros(8)}} id="eight">8</button>
       <button onClick={()=>{Numeros(9)}} id="nine">9</button>
       <button onClick={()=>{Numeros(0)}} id="zero">0</button>
-      <button onClick={()=>{tipoOperacion("*")}} id="multiply">*</button>
-      <button onClick={()=>{tipoOperacion("-")}} id="subtract">-</button>
-      <button onClick={()=>{tipoOperacion("+")}} id="add">+</button>
+      <button onClick={()=>{setFormula("*")}} id="multiply">*</button>
+      <button onClick={()=>{setFormula("-")}} id="subtract">-</button>
+      <button onClick={()=>{setFormula("+")}} id="add">+</button>
       <button onClick={Resultado} id='equals'>=</button>
       <button id="decimal">.</button>
       </div>
